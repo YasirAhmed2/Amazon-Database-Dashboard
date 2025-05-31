@@ -2,11 +2,11 @@
 import psycopg2
 
 # replace with your database details
-DB_NAME = ""
-DB_USER = ""
-DB_PASS = ""
-DB_HOST = ""  
-DB_PORT = ""     
+DB_NAME = "amazon"
+DB_USER = "yasir2"
+DB_PASS = "uiop12345"
+DB_HOST = "localhost"  
+DB_PORT = "32768"     
 
 def get_connection():
     return psycopg2.connect(

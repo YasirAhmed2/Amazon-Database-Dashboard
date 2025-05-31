@@ -9,9 +9,9 @@ st.set_page_config(layout="wide")
 st.title("Amazon Database Dashbaord")
 
 table = st.selectbox("📋 Select a table", [
-    "Customer", "Supplier", "Category", "Delivery", "Orders",
-    "Product", "Transactions", "Cart", "CartItem",
-    "Admin", "Login"
+    "Customer", "CustomerAddress", "Admin", "AdminLogin","CustomerLogin","Supplier",
+    "Category", "Product", "ProductImage", "Cart","CartItem","Discount","Orders","OrderItem",
+    "OrderStatusHistory", "Delivery","Transactions"
 ])
 
 # --- View Records ---
