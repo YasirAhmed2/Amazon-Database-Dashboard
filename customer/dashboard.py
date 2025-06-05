@@ -87,7 +87,7 @@ def customer_dashboard():
                         try:
                             # Create new order record
                             cur.execute(
-                                "INSERT INTO orders (customer_id, order_date, status, total_amount) VALUES (%s, NOW(), %s, %s) RETURNING order_id",
+                                "INSERT INTO orders (customer_id, order_date, current_status, total_amount) VALUES (%s, NOW(), %s, %s) RETURNING order_id",
                                 (st.session_state.customer_id, "Pending", total_amount)
                             )
                             order_id = cur.fetchone()[0]
@@ -95,8 +95,8 @@ def customer_dashboard():
                             # Insert order items
                             for pid, qty in st.session_state.cart.items():
                                 cur.execute(
-                                    "INSERT INTO order_items (order_id, product_id, quantity) VALUES (%s, %s, %s)",
-                                    (order_id, int(pid), qty)
+                                    "INSERT INTO orderitem (order_id, product_id, quantity,price) VALUES (%s, %s, %s,%s)",
+                                    (order_id, int(pid), qty,total_amount)
                                 )
 
                             conn.commit()
@@ -108,12 +108,11 @@ def customer_dashboard():
         except Exception as e:
             st.error(f"Error during order placement: {e}")
 
-    elif choice == "Update Profile":
-        st.warning("Update feature coming soon!")
+
 
     elif choice == "Logout":
         st.session_state.clear()
-        st.experimental_rerun()
+        st.rerun()
 
     cur.close()
     conn.close()

@@ -26,7 +26,7 @@ def login_customer():
                 st.success("Login successful!")
                 st.session_state.customer_id = result[0]
                 st.session_state.is_customer_logged_in = True
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.error("Invalid credentials")
 
