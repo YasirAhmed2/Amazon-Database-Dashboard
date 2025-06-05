@@ -63,7 +63,7 @@ elif role == "Admin Panel":
         manage_suppliers()
     elif admin_option == "Logout":
         st.session_state.admin_logged_in = False
-        st.experimental_rerun()
+        st.rerun()
 
 # ---------- Customer Flow ----------
 elif role == "Customer Login":

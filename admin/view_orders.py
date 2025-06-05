@@ -76,7 +76,7 @@ def view_orders():
                             INSERT INTO OrderStatusHistory (order_id, status) VALUES (:order_id, :status)
                         """), {"order_id": order.order_id, "status": new_status})
                         st.success(f"Order #{order.order_id} status updated to {new_status}")
-                        st.experimental_rerun()
+                        st.rerun()
 
                 st.divider()
 

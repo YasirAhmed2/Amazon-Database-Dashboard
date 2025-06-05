@@ -35,4 +35,4 @@ def manage_categories():
                 if st.button("🗑️ Delete", key=f"del_cat_{cat.category_id}"):
                     conn.execute(text("DELETE FROM Category WHERE category_id = :id"), {"id": cat.category_id})
                     st.success(f"Deleted category: {cat.category_name}")
-                    st.experimental_rerun()
+                    st.rerun()
