@@ -40,4 +40,4 @@ def manage_suppliers():
                 if st.button("🗑️ Delete", key=f"del_sup_{sup.supplier_id}"):
                     conn.execute(text("DELETE FROM Supplier WHERE supplier_id = :id"), {"id": sup.supplier_id})
                     st.success(f"Deleted supplier: {sup.name}")
-                    st.experimental_rerun()
+                    st.rerun()

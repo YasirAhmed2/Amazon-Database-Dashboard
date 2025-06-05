@@ -7,7 +7,7 @@ def get_engine():
     user = "yasir2"
     password = "uiop12345"
     host = "localhost"
-    port = "32769"
+    port = "32768"
     database = "amazon"
 
     engine = create_engine(f'postgresql://{user}:{password}@{host}:{port}/{database}')
