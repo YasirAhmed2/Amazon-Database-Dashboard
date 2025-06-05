@@ -4,11 +4,11 @@ from sqlalchemy import create_engine
 
 def get_engine():
     # Replace with your own credentials
-    user = "your_user"
-    password = "your_password"
+    user = "yasir2"
+    password = "uiop12345"
     host = "localhost"
-    port = "5432"
-    database = "your_db"
+    port = "32769"
+    database = "amazon"
 
     engine = create_engine(f'postgresql://{user}:{password}@{host}:{port}/{database}')
     return engine

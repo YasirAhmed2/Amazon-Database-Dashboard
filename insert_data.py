@@ -10,11 +10,11 @@ import uuid
 fake = Faker()
 
 # Database connection parameters
-DB_NAME = ""
-DB_USER = ""
-DB_PASSWORD = ""
-DB_HOST = ""
-DB_PORT = ""
+DB_NAME = "amazon"
+DB_USER = "yasir2"
+DB_PASSWORD = "uiop12345"
+DB_HOST = "localhost"
+DB_PORT = "32769"
 
 def get_db_connection():
     """Establish database connection"""
@@ -574,41 +574,41 @@ def main():
     try:
         # Independent tables (must succeed first)
         print("\n=== Inserting Independent Tables ===")
-        insert_customers(num_records=100000)
-        insert_admins(num_records=100000)
-        insert_suppliers(num_records=100000)
-        insert_categories(num_records=100000)
-        insert_discounts(num_records=100000)
+        insert_customers()
+        insert_admins()
+        insert_suppliers()
+        insert_categories()
+        insert_discounts()
         
         # Products depends on categories and suppliers
         print("\n=== Inserting Products ===")
-        insert_products(num_records=100000)
+        insert_products()
         
         # Tables that depend on customers
         print("\n=== Inserting Customer-Related Tables ===")
-        insert_customer_addresses(num_records=100000)
-        insert_customer_logins(num_records=100000)
-        insert_carts(num_records=100000)
+        insert_customer_addresses()
+        insert_customer_logins()
+        insert_carts()
         
         # Tables that depend on products
         print("\n=== Inserting Product-Related Tables ===")
-        insert_product_images(num_records=100000)
-        insert_cart_items(num_records=100000)
+        insert_product_images()
+        insert_cart_items()
         
         # Orders depend on customers, discounts, and addresses
         print("\n=== Inserting Orders ===")
-        insert_orders(num_records=100000)
+        insert_orders()
         
         # These depend on orders
         print("\n=== Inserting Order-Related Tables ===")
-        insert_order_items(num_records=100000)
-        insert_order_status_history(num_records=100000)
-        insert_deliveries(num_records=100000)
-        insert_transactions(num_records=100000)
+        insert_order_items()
+        insert_order_status_history()
+        insert_deliveries()
+        insert_transactions()
         
         # Admin logins depend on admins
         print("\n=== Inserting Admin Logins ===")
-        insert_admin_logins(num_records=100000)
+        insert_admin_logins()
         
         print("\nData generation completed successfully!")
         
