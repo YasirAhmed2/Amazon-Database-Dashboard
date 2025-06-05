@@ -2,7 +2,7 @@
 
 import streamlit as st
 from sqlalchemy import text
-from db.connection import create_engine
+from db.connection import get_engine
 
 def admin_login():
     st.title("🔐 Admin Login")
