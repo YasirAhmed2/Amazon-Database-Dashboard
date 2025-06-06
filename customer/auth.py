@@ -1,7 +1,6 @@
 import streamlit as st
 import bcrypt
 from db import get_connection
-
 def hash_password(password):
     return bcrypt.hashpw(password.encode(), bcrypt.gensalt())
 
