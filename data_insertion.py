@@ -79,7 +79,7 @@ def generate_admin_data(conn):
     data = []
     for i in tqdm(range(1, RECORDS_PER_TABLE + 1), desc="Admins"):
         admin = {
-            'admin_id': i,
+            # 'admin_id': i,
             'name': fake.unique.name(),
             'email': f"admin{i}@example.com",  # Ensures unique email
             'user_name': f"admin_{i}",  # Ensures unique username
@@ -102,7 +102,7 @@ def generate_customer_data(conn):
     data = []
     for i in tqdm(range(1, RECORDS_PER_TABLE + 1), desc="Customers"):
         customer = {
-            'customer_id': i,
+            # 'customer_id': i,
             'name': fake.unique.name(),
             'email': f"customer{i}@example.com",  # Ensures unique email
             'phone': fake.unique.phone_number()[:20],
@@ -140,7 +140,7 @@ def generate_category_data(conn):
         category_name = f"{main_word} {sub_word} {i}"
         
         category = {
-            'category_id': i,
+            # 'category_id': i,
             'category_name': category_name
         }
         data.append(category)
@@ -158,7 +158,7 @@ def generate_supplier_data(conn):
     data = []
     for i in tqdm(range(1, RECORDS_PER_TABLE + 1), desc="Suppliers"):
         supplier = {
-            'supplier_id': i,
+            # 'supplier_id': i,
             'name': f"{fake.unique.company()} {i}",
             'email': f"supplier{i}@example.com",
             'phone': fake.unique.phone_number()[:20]
@@ -471,22 +471,73 @@ def main():
         conn = get_db_connection()
         
         # Generate data in dependency order
-        generate_admin_data(conn)
-        generate_customer_data(conn)
-        generate_category_data(conn)
-        generate_supplier_data(conn)
+        # with conn.cursor() as cursor:
+        #     cursor.execute("TRUNCATE TABLE admin RESTART IDENTITY CASCADE;")
+        #     conn.commit()
+        # generate_admin_data(conn)
+        # with conn.cursor() as cursor:
+        #     cursor.execute("TRUNCATE TABLE admin RESTART IDENTITY CASCADE;")
+        #     conn.commit()
+        # generate_customer_data(conn)
+        # with conn.cursor() as cursor:
+        #     cursor.execute("TRUNCATE TABLE category RESTART IDENTITY CASCADE;")
+        #     conn.commit()
+        # generate_category_data(conn)
+        # with conn.cursor() as cursor:
+        #     cursor.execute("TRUNCATE TABLE supplier RESTART IDENTITY CASCADE;")
+        #     conn.commit()
+        # generate_supplier_data(conn)
+        with conn.cursor() as cursor:
+            cursor.execute("TRUNCATE TABLE product RESTART IDENTITY CASCADE;")
+            conn.commit()
         generate_product_data(conn)
+        with conn.cursor() as cursor:
+            cursor.execute("TRUNCATE TABLE cart RESTART IDENTITY CASCADE;")
+            conn.commit()
         generate_cart_data(conn)
+        with conn.cursor() as cursor:
+            cursor.execute("TRUNCATE TABLE cartitem RESTART IDENTITY CASCADE;")
+            conn.commit()
         generate_cartitem_data(conn)
+        with conn.cursor() as cursor:
+            cursor.execute("TRUNCATE TABLE customeraddress RESTART IDENTITY CASCADE;")
+            conn.commit()
         generate_customeraddress_data(conn)
+        with conn.cursor() as cursor:
+            cursor.execute("TRUNCATE TABLE discount RESTART IDENTITY CASCADE;")
+            conn.commit()
         generate_discount_data(conn)
+        with conn.cursor() as cursor:
+            cursor.execute("TRUNCATE TABLE orders RESTART IDENTITY CASCADE;")
+            conn.commit()
         generate_orders_data(conn)
+        with conn.cursor() as cursor:
+            cursor.execute("TRUNCATE TABLE orderitem RESTART IDENTITY CASCADE;")
+            conn.commit()
         generate_orderitem_data(conn)
+        with conn.cursor() as cursor:
+            cursor.execute("TRUNCATE TABLE delivery RESTART IDENTITY CASCADE;")
+            conn.commit()
         generate_delivery_data(conn)
+        with conn.cursor() as cursor:
+            cursor.execute("TRUNCATE TABLE transactions RESTART IDENTITY CASCADE;")
+            conn.commit()
         generate_transactions_data(conn)
+        with conn.cursor() as cursor:
+            cursor.execute("TRUNCATE TABLE productimage RESTART IDENTITY CASCADE;")
+            conn.commit()
         generate_productimage_data(conn)
+        with conn.cursor() as cursor:
+            cursor.execute("TRUNCATE TABLE adminlogin RESTART IDENTITY CASCADE;")
+            conn.commit()
         generate_adminlogin_data(conn)
+        with conn.cursor() as cursor:
+            cursor.execute("TRUNCATE TABLE customer RESTART IDENTITY CASCADE;")
+            conn.commit()
         generate_customerlogin_data(conn)
+        with conn.cursor() as cursor:
+            cursor.execute("TRUNCATE TABLE orderstatushistory RESTART IDENTITY CASCADE;")
+            conn.commit()
         generate_orderstatushistory_data(conn)
         
         print("\nData generation and insertion completed successfully!")

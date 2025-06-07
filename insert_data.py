@@ -14,7 +14,7 @@ DB_NAME = "amazon"
 DB_USER = "yasir2"
 DB_PASSWORD = "uiop12345"
 DB_HOST = "localhost"
-DB_PORT = "32769"
+DB_PORT = "32768"
 
 def get_db_connection():
     """Establish database connection"""
@@ -106,7 +106,7 @@ def insert_suppliers(num_records=1000):
     data = []
     for i in range(num_records):
         data.append((
-            fake.unique.random_number(digits=8),  # supplier_id
+            # fake.unique.random_number(digits=8),  # supplier_id
             fake.company(),                      # name
             fake.unique.company_email(),        # email
             fake.phone_number()                 # phone
@@ -176,7 +176,7 @@ def insert_products(num_records=1000):
     data = []
     for i in range(num_records):
         data.append((
-            fake.unique.random_number(digits=8),
+            # fake.unique.random_number(digits=8),
             fake.catch_phrase()[:100],
             fake.text(max_nb_chars=200),
             round(random.uniform(1, 1000), 2),
@@ -574,11 +574,11 @@ def main():
     try:
         # Independent tables (must succeed first)
         print("\n=== Inserting Independent Tables ===")
-        insert_customers()
-        insert_admins()
+        # insert_customers()
+        # insert_admins()
         insert_suppliers()
-        insert_categories()
-        insert_discounts()
+        # insert_categories()
+        # insert_discounts()
         
         # Products depends on categories and suppliers
         print("\n=== Inserting Products ===")
@@ -586,29 +586,29 @@ def main():
         
         # Tables that depend on customers
         print("\n=== Inserting Customer-Related Tables ===")
-        insert_customer_addresses()
-        insert_customer_logins()
-        insert_carts()
+        # insert_customer_addresses()
+        # insert_customer_logins()
+        # insert_carts()
         
-        # Tables that depend on products
-        print("\n=== Inserting Product-Related Tables ===")
-        insert_product_images()
-        insert_cart_items()
+        # # Tables that depend on products
+        # print("\n=== Inserting Product-Related Tables ===")
+        # insert_product_images()
+        # insert_cart_items()
         
-        # Orders depend on customers, discounts, and addresses
-        print("\n=== Inserting Orders ===")
-        insert_orders()
+        # # Orders depend on customers, discounts, and addresses
+        # print("\n=== Inserting Orders ===")
+        # insert_orders()
         
-        # These depend on orders
-        print("\n=== Inserting Order-Related Tables ===")
-        insert_order_items()
-        insert_order_status_history()
-        insert_deliveries()
-        insert_transactions()
+        # # These depend on orders
+        # print("\n=== Inserting Order-Related Tables ===")
+        # insert_order_items()
+        # insert_order_status_history()
+        # insert_deliveries()
+        # insert_transactions()
         
-        # Admin logins depend on admins
-        print("\n=== Inserting Admin Logins ===")
-        insert_admin_logins()
+        # # Admin logins depend on admins
+        # print("\n=== Inserting Admin Logins ===")
+        # insert_admin_logins()
         
         print("\nData generation completed successfully!")
         
