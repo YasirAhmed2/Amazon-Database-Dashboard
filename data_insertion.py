@@ -63,10 +63,11 @@ def execute_insert(conn, table_name, data):
         sql.Identifier(table_name),
         sql.SQL(', ').join(map(sql.Identifier, columns)),
         sql.SQL(', ').join(sql.Placeholder() * len(columns))
-    
+    )
     try:
         with conn.cursor() as cursor:
-            execute_batch(cursor, query, data, page_size=CHUNK_SIZE)
+            values = [tuple(row[col] for col in columns) for row in data]
+            execute_batch(cursor, query, values, page_size=CHUNK_SIZE)
         conn.commit()
     except Exception as e:
         conn.rollback()
